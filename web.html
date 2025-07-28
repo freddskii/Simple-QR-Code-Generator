@@ -1,0 +1,41 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single" rel="stylesheet">
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simple QR Code Generator Using HTML CSS and Javascript</title>
+        <link rel="stylesheet" href="stylesheet.css">
+    </head>
+    <body>
+        <div class="container">
+            <p>Enter your url</p>
+            <input type="text" placeholder="Text or url" id="input">
+
+            <div id="imgBox">
+                <img src="" id="qrImg">
+            </div>
+
+            <button onclick="generator()">Generate QR Code</button>
+        </div>
+        <script>
+            let imgBox=document.getElementById("imgBox");
+            let qrImg=document.getElementById("qrImg");
+            let input=document.getElementById("input");
+
+            function generator(){
+                if(input.value.length > 0){
+                    qrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + input.value;
+                    imgBox.classList.add("show-img");
+                } else {
+                    
+                    imgBox.classList.remove("show-img");
+                    input.classList.add('error');
+                    setTimeout(() => {input.classList.remove('error');},1000)
+                }
+            }
+        </script>
+    </body>
+
+</html>
